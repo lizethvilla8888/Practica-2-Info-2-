@@ -17,18 +17,18 @@ while(opcion !=0)
         cout<<"4)  Problema 4 : Conviertir cadena de caracteres a un numero entero. "<<endl;
         cout<<"5)  Problema 5 : Convertir numero a cadena de caracteres."<<endl;
         cout<<"6)  Problema 6 : Cambio letras minusculas por mayusculas. "<<endl;
-        cout<<"7)  Problema 7 : ."<<endl;
+        cout<<"7)  Problema 7 : Elimina los caracteres repetidos de cadena de caracteres."<<endl;
         cout<<"8)  Problema 8 : Separar numeros y caracteres."<<endl;
         cout<<"9)  Problema 9 : Cadena dividida en n # y sumada."<<endl;
-        cout<<"10) problema 10: ."<<endl;
-        cout<<"11) Problema 11: ."<<endl;
+        cout<<"10) problema 10: Convertir un número en el sistema romano al sistema arábigo."<<endl;
+        cout<<"11) Problema 11: Permita manejar las reservas de asientos en una sala de cine."<<endl;
         cout<<"12) Problema 12: Verificar si matriz es un cuadrado magico."<<endl;
         cout<<"13) Problema 13: Numero de estrellas encontradas en la imagen."<<endl;
-        cout<<"13) Problema 14: ."<<endl;
+        cout<<"13) Problema 14: Llene una matriz n*n con los números del 1 al n y la imprima, luego imprime la matriz rotada 90, 180 y 270 grados."<<endl;
         cout<<"15) Problema 15: Interseccion entre un par de rectangulos. "<<endl;
-        cout<<"16) Problema 16: ."<<endl;
+        cout<<"16) Problema 16: Calcula el número de caminos posibles en una cuadrícula de nxn."<<endl;
         cout<<"17) Problema 17: Suma de todos los num amigables menores al num ingresado. "<<endl;
-        cout<<"18) Problema 18: ."<<endl;
+        cout<<"18) Problema 18: Halla la enésima permutación lexicográfica de los números entre 0 y 9."<<endl;
         cout<<" "<<endl;
         cout<<"Presione 0 para salir"<<endl;
 
@@ -45,7 +45,7 @@ switch(opcion)
          problema2 ();
          break;
     case 3:
-         cout << "*****  *****\n"<<"Problema 3"<<endl;
+         cout << "***** Comparacion de dos cadenas de caracteres *****\n"<<"Problema 3"<<endl;
          bool prueba;
          prueba = problema3();
          if (prueba == true)
@@ -70,7 +70,8 @@ switch(opcion)
          problema6 ();
          break;
     case 7:
-         cout << "*****  *****\n"<<"Problema 7"<<endl;
+         cout << "***** Elimina los caracteres repetidos de cadena de caracteres *****\n"<<"Problema 7"<<endl;
+         problema7 ();
          break;
     case 8:
          cout << "***** Separar numeros y caracteres *****\n"<<"Problema 8"<<endl;
@@ -81,11 +82,12 @@ switch(opcion)
          problema9 ();
          break;
     case 10:
-         cout << "*****  *****\n"<<"Problema 10"<<endl;
+         cout << "***** Convertir un número en el sistema romano al sistema arábigo *****\n"<<"Problema 10"<<endl;
          problema10();
          break;
     case 11:
-         cout << "*****  *****\n"<<"Problema 11"<<endl;
+         cout << "***** Permita manejar las reservas de asientos en una sala de cine *****\n"<<"Problema 11"<<endl;
+         problema11 ();
          break;
     case 12:
          cout << "***** Verificar si matriz es un cuadrado magico *****\n"<<"Problema 12"<<endl;
@@ -96,8 +98,9 @@ switch(opcion)
          problema13 ();
          break;
     case 14:
-         cout << "*****  *****\n"<<"Problema 14"<<endl;
-         break;
+         cout << "***** Llene una matriz n*n con los números del 1 al n y la imprima, luego imprime la matriz rotada 90, 180 y 270 grados *****\n"<<"Problema 14"<<endl;
+         problema14 ();
+    break;
     case 15:
          cout << "***** Interseccion entre un par de rectangulos *****\n"<<"Problema 15"<<endl;
          problema15 ();
@@ -111,13 +114,14 @@ switch(opcion)
          problema17 ();
          break;
     case 18:
-         cout << "*****  *****\n"<<"Problema 18"<<endl;
+         cout << "*****  Halla la enésima permutación lexicográfica de los números entre 0 y 9  *****\n"<<"Problema 18"<<endl;
+         problema18 ();
          break;
 
     default:
          cout<<"La opcion no es valida. "<<endl;
          break;
-}//switch
+}
 }//while(opcion !=0)
 
     return 0;
