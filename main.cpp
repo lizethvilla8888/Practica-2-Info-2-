@@ -46,10 +46,19 @@ switch(opcion)
          break;
     case 3:
          cout << "***** Comparacion de dos cadenas de caracteres *****\n"<<"Problema 3"<<endl;
+         char c1 [100], c2 [100];
+         cout << "Ingrese cadena 1:"<<endl;
+         scanf("%s",c1);
+         cout << "Ingrese cadena 2:"<<endl;
+         scanf("%s",c2);
+
          bool prueba;
-         prueba = problema3();
-         if (prueba == true)
-             cout << "Las cadenas de cararteres son iguales. "<<endl;
+         prueba = problema3(&c1[0], c2);
+
+         if (prueba == 1)
+             cout << "Las cadenas son iguales. "<< endl<<endl;
+         else
+             cout << "las cadenas son diferentes. "<<endl<<endl;
 
          break;
     case 4:
@@ -63,7 +72,7 @@ switch(opcion)
         break;
     case 5:
          cout << "***** Convertir numero a cadena de caracteres *****\n"<<"Problema 5"<<endl;
-         problema5 ();
+         cout << "El numero en forma de  cadena de caracteres es: "<< problema5 ()<<endl;
         break;
     case 6:
          cout << "***** Cambio letras minusculas por mayusculas *****\n"<<"Problema 6"<<endl;
@@ -71,7 +80,13 @@ switch(opcion)
          break;
     case 7:
          cout << "***** Elimina los caracteres repetidos de cadena de caracteres *****\n"<<"Problema 7"<<endl;
-         problema7 ();
+         char t[100], final[100];
+
+         cout << "Ingrese cadena;"<<endl;
+         scanf("%s",t);
+
+         problema7(&t[0],&final[0]);
+         cout << final << endl;
          break;
     case 8:
          cout << "***** Separar numeros y caracteres *****\n"<<"Problema 8"<<endl;
@@ -99,7 +114,13 @@ switch(opcion)
          break;
     case 14:
          cout << "***** Llene una matriz n*n con los números del 1 al n y la imprima, luego imprime la matriz rotada 90, 180 y 270 grados *****\n"<<"Problema 14"<<endl;
-         problema14 ();
+         int ***conj_matrices;
+             unsigned short dim;
+             cout<<"Ingrese la dimension de la matriz: ";
+             cin >> dim;
+
+             conj_matrices = generar_conj_matrices(dim);
+             imprimir_conj_matrices(conj_matrices,dim);
     break;
     case 15:
          cout << "***** Interseccion entre un par de rectangulos *****\n"<<"Problema 15"<<endl;

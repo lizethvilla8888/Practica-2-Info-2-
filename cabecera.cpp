@@ -23,12 +23,13 @@ int numbillmon [10]={0,0,0,0,0,0,0,0,0,0}
 cout << "Ingrese cantidad de dinero:"<<endl;
 cin >> dinero;
 
+//calculo numero de billetes y monedas
 for (int i=0;i<10;i++){
      numbillmon[i]=dinero/cantidad [i];
      if (numbillmon[i]>0)
           dinero = dinero-(cantidad [i]*numbillmon[i]);
      }
-
+// Impresion del resultado
 for (int i=0;i<10;i++){
     cout << cantidad[i]<<" : " <<numbillmon[i]<<endl;
 }
@@ -37,20 +38,20 @@ cout << "Faltante: "<<dinero<<endl;
 
 void problema2 (){
 srand(time (NULL));//para que cambien los valores
-char vletras[100];
-int vnum[100];
+char vletras[200];
 
-for (int i=0;i<100;i++){
-     vnum[i] = 65+rand() %(90-65+1); //variable= limite inferior+rand ()%(limite superior+1-limite inferior)
-     vletras[i]= vnum[i];
+//Genero numeros entre A = 65 y Z = 90  codigo ascci y los ingreso los numeros a arreglo de vletras
+for (int i=0;i<200;i++){
+     vletras[i] = 65+rand() %(90-65+1); //variable= limite inferior+rand ()%(limite superior+1-limite inferior)
      cout << vletras[i]<<" ";
      }
 cout <<"\n";
-//letras abecedario
+
+//conteo de letras abecedario en el arreglo vletras
 char letra;
 int sum=0;
 for (int i = 65; i<=90;i++){
-     for (int j=0;j<100;j++){
+     for (int j=0;j<200;j++){
          char verificacion = vletras[j];
          letra=i;
          if (letra ==verificacion)
@@ -59,44 +60,38 @@ for (int i = 65; i<=90;i++){
     if (sum >0 )
         cout << letra <<" = "<<sum<<endl;
   }
-
 }
 
-bool problema3(){
-
-char cadena_1[101], cadena_2[101];
-int longitud_1=0, longitud_2=0;
-bool boleano_retorno=true;
-cout << "Ingrese cadena de caractres 1: "<<endl;
-scanf("%s",cadena_1);
-cout << "Ingrese cadena de caractres 2: "<<endl;
-scanf("%s",cadena_2);
-
-for (int i =0;cadena_1[i]!= '\0';i++)
-    longitud_1++;
-for (int i =0;cadena_2[i]!= '\0';i++)
-    longitud_2++;
-
-if (longitud_1==longitud_2){
-    for (int i =0;cadena_1[i] != '\0';i++)
-        if (cadena_1[i] =! cadena_2[i])
-            boleano_retorno = false;
+bool problema3(char *c1, char *c2 ){
+ //comprobamos si las cadenas c1 y c2 tienen la misma longitud
+    bool salida = true;
+    if (longitud(c1) != longitud(c2)){
+        salida = false;
+    }
+    else {
+        for (int i = 0; *(c1 +i) != '\0' ; i++){
+            if (c1 [i] != c2 [i]){
+                salida = false;
+                break ;
+            }
+        }
+    }
+    return salida;
 }
-else {
-    cout << "Las cadenas de caracteres no son iguales"<<endl;
-    boleano_retorno = false;
-}
-return boleano_retorno;
+
+int longitud (char *c ){
+     int i =0;
+    for (; *(c+i)!= '\0';i++) // obtengo longitud de arreglo
+
+  return i+1;
 }
 
 int  problema4 (char cadena[])
 {
 int numeros[100],longitud=0,numerofinal=0;
-
+int num=0;
 //ciclo para crear arreglo con los numeros int
-for (int i =0;cadena[i]!= '\0';i++)
-    {
-    int num=0;
+for (int i =0;cadena[i]!= '\0';i++){
     num = cadena [i]-48;
     numeros[i]=num;
     longitud=longitud+1;
@@ -121,15 +116,17 @@ longitud_cadena = longitud_numeros(num_usuario);
 char cadena_caracteres[longitud_cadena];
 char *puntero = cadena_caracteres;
 
-if (num_usuario == 0)
-    cout <<"Valor invalido"<<endl;
+if (num_usuario == 0){
+    cadena_caracteres [0] = 0;
+    cadena_caracteres[1] = '\0';
+}
 
 for (int i = 0;i < longitud_cadena; i++ ){
     cadena_caracteres [longitud_cadena-(i+1)] = (num_usuario%10)+48;
     num_usuario = num_usuario/10;
     }
 
-cout << "La cadena de caraceres:"<<cadena_caracteres<<" Longitud cadena "<<longitud_cadena<<endl;
+cout << "La cadena de caraceres:"<<cadena_caracteres<<endl;
  return puntero;
 }
 
@@ -155,10 +152,12 @@ cout <<"Original:      "<< cadena<<endl;
 cout <<"En mayuscula: "<< copia<<endl;
 
 }
+
 void problema7(char *cadena, char *sin_repetir)
 {
   *sin_repetir = '\0';
-  for(int i=0;*(cadena+i)!='\0';i++) aux_p7(*(cadena+i),sin_repetir);
+  for(int i=0;*(cadena+i)!='\0';i++)
+      aux_p7(*(cadena+i),sin_repetir);
 
 }
 
@@ -176,7 +175,8 @@ bool aux_p7(char c, char *cadena)
     }
     return agregar;
 }
-void problema8 (){
+
+void problema8 () {
 int n;
 cout << "Ingrese la cantidad de elementos:"<<endl;
 cin >>n;
@@ -200,7 +200,7 @@ for (int i = 0; i<=n;i++)
     num = cadena [i]-48;
     numeros [contador]=num;
 
-    //elimino el caracter cadena [i].
+    //elimino los numeros de  cadena [i].
     for (int k = i+1,eliminar=i;k<=n;k++,eliminar++)
         {cadena [eliminar]=cadena [k];}
     contador ++;
@@ -215,8 +215,7 @@ for (int i = 0;i<contador;i++)
 cout << endl;
 }
 
-void problema9 ()
-{
+void problema9 (){
 int numdivisor,longitud=0,suma=0;
 cout << "Ingrese numero para dividir cadena: "<<endl;
 cin>>numdivisor;
@@ -270,10 +269,14 @@ void problema10(){
 
 }
 
+void problema11 (){
+
+}
+
 void problema12 ()
 {
 int filas_colum =0;
-cout <<"Ingrese numero de filas: "<<endl;
+cout <<"Ingrese numero nxn : "<<endl;
 cin >> filas_colum;
 
 int matriz [filas_colum][filas_colum],verificacion=0;
@@ -289,7 +292,7 @@ for (int i = 0; i< filas_colum;i++)//i filas
         }
 }
 
-//mostrar matriz, verificacion horizontal
+//mostrar matriz, verificacion horizontal filas
 for (int i = 0; i<filas_colum;i++)
 {
      int suma_horizontal=0;
@@ -596,6 +599,7 @@ for (int i = 0; i < 4 ; i++)
 }
 
 void problema16 () {
+ //numero de caminos matriz nxn
     int n;
     long double total;
     long double factorial=1;
@@ -604,10 +608,12 @@ void problema16 () {
     cout<<"Ingrese el numero de la malla"<<endl;
     cin>>n;
     long double suma=n+n;
+    //calculo de factorial 1
       for (int i=1;i<=suma;i++)
            {
                factorial=factorial*i;
            }
+      // calculo de factorial 2
        for (int j=1;j<=n;j++)
            {
                factorial2=factorial2*j;
@@ -644,6 +650,7 @@ int copia1 = 220, copia2 = 284; // no sumar dos veces los mismos numeros
 cout << "Suma: "<<suma<<endl<<"\n";
 }
 void problema18 (){
+/*
     vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
     int n, contador = 1;
 
@@ -660,6 +667,7 @@ void problema18 (){
            }
            contador++;
        }
+*/
 }
 int divisores (int num){
 int suma =0;
@@ -680,4 +688,5 @@ for (int i =0; num > 0; i++){
      longitud ++;
 }
 return longitud;
+
 }
