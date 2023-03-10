@@ -155,7 +155,27 @@ cout <<"Original:      "<< cadena<<endl;
 cout <<"En mayuscula: "<< copia<<endl;
 
 }
+void problema7(char *cadena, char *sin_repetir)
+{
+  *sin_repetir = '\0';
+  for(int i=0;*(cadena+i)!='\0';i++) aux_p7(*(cadena+i),sin_repetir);
 
+}
+
+bool aux_p7(char c, char *cadena)
+{
+    int i=0;
+    bool agregar = true;
+
+    for(i=0;*(cadena+i)!='\0';i++){
+        if(c == *(cadena+i)) agregar = false;
+    }
+    if(agregar){
+        cadena[i] = c;
+        cadena[i+1] = '\0';
+    }
+    return agregar;
+}
 void problema8 (){
 int n;
 cout << "Ingrese la cantidad de elementos:"<<endl;
@@ -394,6 +414,57 @@ cout << "\nEstrellas: "<<estrellas<<endl;
 
 }
 
+int *** generar_conj_matrices(unsigned short dim){
+    int ***conj_matrices = new int **[4];
+    conj_matrices[0] = generar_matriz(dim);
+    for(unsigned short i=1;i<4;i++) conj_matrices[i] = rotar90(conj_matrices[i-1],dim);
+
+    return conj_matrices;
+}
+
+int ** generar_matriz(unsigned short dim){
+    int ** matriz = dinamica_p2(dim);
+
+    for(unsigned short f=0;f<dim;f++){
+        for(unsigned short c=0;c<dim;c++) matriz[f][c] = dim*f+(c+1);
+    }
+
+    return matriz;
+}
+
+int ** dinamica_p2(unsigned short dim){
+    int ** a = new int* [dim];
+
+    for(unsigned short i=0;i<dim;i++) a[i] = new int [dim];
+
+    return a;
+}
+
+int ** rotar90(int ** matriz, unsigned short dim){
+    int ** R_matriz = dinamica_p2(dim);
+
+    for(unsigned short f=0;f<dim;f++){
+        for(unsigned short c=0;c<dim;c++) R_matriz[c][dim-f-1] = matriz[f][c];
+    }
+
+    return R_matriz;
+}
+
+void imprimir_matriz(int **matriz, unsigned short dim){
+    for(unsigned short f=0;f<dim;f++){
+        for(unsigned short c=0;c<dim;c++) cout << matriz[f][c] << '\t';
+        cout << endl << endl;
+    }
+}
+
+void imprimir_conj_matrices(int ***conj_matrices, unsigned short dim){
+    for(unsigned short i=0;i<4;i++){
+        cout << "Matriz rotada " << i*90 << " grados" << endl << endl;
+        imprimir_matriz(conj_matrices[i],dim);
+        cout << endl << endl;
+    }
+}
+
 void problema15 ()
 {
 // {0, 0, 8, 4} y {5, 2, 6, 7}, el rectángulo intersección C debe ser el arreglo {5, 2, 3, 2}.
@@ -572,7 +643,24 @@ int copia1 = 220, copia2 = 284; // no sumar dos veces los mismos numeros
 }
 cout << "Suma: "<<suma<<endl<<"\n";
 }
+void problema18 (){
+    vector<int> nums = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int n, contador = 1;
 
+    cout << "Ingrese el numero de permutacion que desea generar: ";
+    cin >> n;
+    //Aqui se generan las combinaciones
+    while (next_permutation(nums.begin(), nums.end())) {
+          if (contador == n) {
+             for (auto num : nums) {
+                  cout << num << " ";
+               }
+               cout << endl;
+               break;
+           }
+           contador++;
+       }
+}
 int divisores (int num){
 int suma =0;
 for (int i=1; i<=num/2 ;i++){
